@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner'
 import PropTypes from 'prop-types'
+import axios from 'axios'
 
 export class News extends Component{
 
@@ -29,9 +30,9 @@ export class News extends Component{
     async componentDidMount(){
         try {
             let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=d1a9df7e186c481d903b090aa13c1b8e&page=1&pageSize=${this.props.pageSize}`;
-            let data = await fetch(url)
+            let res = await axios.get(url) 
             this.setState({loading: true})
-            let parsedData = await data.json()
+            let parsedData = JSON.parse(res.data)
             console.log(parsedData);
             this.setState({articles: parsedData.articles, totalArticles: parsedData.totalResults});
         } 
@@ -86,11 +87,11 @@ export class News extends Component{
             <h2 className="text-center">This is NewsMonkey API website</h2>
             {this.state.loading && <Spinner />}
             <div className="row">
-                {this.state.articles? this.state.articles?.map((element) =>{
+                {this.state.articles?.map((element) =>{
                     return <div className="col-md-3" key={element.url}>
                         <NewsItem title={element.title?element.title.slice(0, 45):""} description={element.description?element.description.slice(0, 88):""} imgURL={element.urlToImage} newsURL={element.url}/>
                     </div>
-                }):null}
+                })}
             </div>
             <div className="container d-flex justify-content-between">
                 <button disabled={this.state.page <= 1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
