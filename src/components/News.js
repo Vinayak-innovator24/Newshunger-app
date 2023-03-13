@@ -28,17 +28,19 @@ export class News extends Component{
     }
 
     async componentDidMount(){
-        try {
-            let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=d1a9df7e186c481d903b090aa13c1b8e&page=1&pageSize=${this.props.pageSize}`;
-            let res = await axios.get(url) 
-            this.setState({loading: true})
-            let parsedData = JSON.parse(res.data)
-            console.log(parsedData);
-            this.setState({articles: parsedData.articles, totalArticles: parsedData.totalResults});
-        } 
-        catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=d1a9df7e186c481d903b090aa13c1b8e&page=1&pageSize=${this.props.pageSize}`;
+        //     let res = await axios.get(url) 
+        //     console.log(res);
+        //     this.setState({loading: true})
+        //     let parsedData = JSON.parse(res.data)
+        //     console.log(parsedData);
+        //     this.setState({articles: parsedData.articles, totalArticles: parsedData.totalResults});
+        // } 
+        // catch (error) {
+        //     console.log(error);
+        // }
+        console.log("hello")
     }
 
     handlePrevClick = async ()=> {
