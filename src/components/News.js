@@ -86,11 +86,11 @@ export class News extends Component{
             <h2 className="text-center">This is NewsMonkey API website</h2>
             {this.state.loading && <Spinner />}
             <div className="row">
-                {this.state.articles?.map((element) =>{
+                {this.state.articles? this.state.articles?.map((element) =>{
                     return <div className="col-md-3" key={element.url}>
                         <NewsItem title={element.title?element.title.slice(0, 45):""} description={element.description?element.description.slice(0, 88):""} imgURL={element.urlToImage} newsURL={element.url}/>
                     </div>
-                })}
+                }):null}
             </div>
             <div className="container d-flex justify-content-between">
                 <button disabled={this.state.page <= 1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
