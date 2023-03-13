@@ -69,7 +69,7 @@ export class News extends Component{
             <h2 className="text-center">This is NewsMonkey API website</h2>
             {this.state.loading && <Spinner />}
             <div className="row">
-                {this.state.articles.map((element) =>{
+                {this.state.articles?.map((element) =>{
                     return <div className="col-md-3" key={element.url}>
                         <NewsItem title={element.title?element.title.slice(0, 45):""} description={element.description?element.description.slice(0, 88):""} imgURL={element.urlToImage} newsURL={element.url}/>
                     </div>
